@@ -1,0 +1,44 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    </head>
+    <body style="background-color: burlywood;" >
+      
+    
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">  WELCOME TO PIZZA CENTER {{username}}</a>
+        <a href="/logoutuser/" class="btn btn-danger">Logout</a> 
+      </nav>
+      <form method="POST" action="/placed/">
+        {% csrf_token %}
+      <div class="container" style="width: 600px; margin:auto">
+        <table style="width: 100%;">
+          <tr>
+            <th>Pizza</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+          {% for pizz in pizza %}
+            <tr>
+              <td>{{pizz.pizza}}</td>
+              <td>{{pizz.price}}</td>
+              <td><input type="number" name="{{pizz.id}}" style="width:60px;" name="Quantity"> </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="text" placeholder="address" style="width: 400px;margin-top:300px;" name="address">
+        <input type="submit" style="float: right; margin-top:300px" class="btn btn-success">
+      </form>
+      </div>
+      <p style="display:block:margin-rigth:300px;">
+        {% for msg in messages %}
+        {{msg}}
+        {% endfor %}
+      </p>
+     
+
+    </body>
+    </html>
